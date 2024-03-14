@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/KBU Java 2/Class/Class.iml" filepath="$PROJECT_DIR$/KBU Java 2/Class/Class.iml" />
       <module fileurl="file://$PROJECT_DIR$/KBU-Java-2.iml" filepath="$PROJECT_DIR$/KBU-Java-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KBU Java 2/Report/R_Week1/R_Week1.iml" filepath="$PROJECT_DIR$/KBU Java 2/Report/R_Week1/R_Week1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KBU Java 2/Report/R_Week2/R_Week2.iml" filepath="$PROJECT_DIR$/KBU Java 2/Report/R_Week2/R_Week2.iml" />
     </modules>
   </component>
 </project>
