@@ -6,91 +6,91 @@ public class SportsCenter {
     protected char grade;       // 등급코드
     protected int[] data;       // 종류 코드, 사용시간
 
-    public SportsCenter(String[] man, char grade, int[] data) {
-        this.man = man;
-        this.grade = grade;
-        this.data = data;
+//    public SportsCenter(String[] man, char grade, int[] data) {
+//        this.man = man;
+//        this.grade = grade;
+//        this.data = data;
+//    }
+
+        public SportsCenter(String[] man, char grade, int[] data) throws IOException {
+        this.setMan();
+        this.setGrade();
+        this.setData();
     }
 
-    //    public SportsCenter(String[] man, char grade, int[] data) throws IOException {
-//        this.setMan();
-//        this.setGrade();
-//        this.setData();
-//    }
-//
-//    public String[] getMan() {
-//        return man;
-//    }
-//
-//    public void setMan() throws IOException {
-//        Scanner kb = new Scanner(System.in);
-//        man = new String[2];
-//
-//        while (true) {
-//            System.out.print("회원번호 입력 : ");
-//            man[0] = kb.next();
-//            System.out.print("이름 입력 : ");
-//            man[1] = kb.next();
-//
-//            if (man[0].length() == 4) {
-//                break;
-//            } else {
-//                System.err.println("회원번호는 4자리 입니다.\n다시 입력해주세요.");
-//                System.in.read();
-//            }
-//        }
-//    }
-//
-//    public char getGrade() {
-//        return grade;
-//    }
-//
-//    public void setGrade() throws IOException {
-//        Scanner kb = new Scanner(System.in);
-//
-//        while (true) {
-//            System.out.print("회원등급 입력 : ");
-//            grade = kb.next().charAt(0);
-//
-//            if (grade >= 'A' && grade <= 'D' || grade >= 'a' && grade <= 'd') {
-//                break;
-//            } else {
-//                System.err.println("회원등급은 대소문자 구분없이 A ~ D 사이 입니다.\n다시 입력해주세요.");
-//                System.in.read();
-//            }
-//        }
-//    }
-//
-//    public int[] getData() {
-//        return data;
-//    }
-//
-//    public void setData() throws IOException {
-//        Scanner kb = new Scanner(System.in);
-//        data = new int[2];
-//
-//        while (true) {
-//            System.out.print("운동분류코드 입력 : ");
-//            data[0] = kb.nextInt();
-//
-//            System.out.print("사용시간 입력 : ");
-//            data[1] = kb.nextInt();
-//
-//            if (data[0] >= 1 && data[0] <= 6) {
-//                break;
-//            } else {
-//                System.err.println("(1)스쿼시, (2)테니스, (3)골프, (4)탁구, (5)에어로빅, (6)헬스\n다시 입력해주세요.");
-//                System.in.read();
-//            }
-//
-//            if (data[1] >= 1 && data[1] <= 999) {
-//                break;
-//            } else {
-//                System.err.println("0 ~ 999시간까지만 입력 가능합니다.\n다시 입력해주세요.");
-//                System.in.read();
-//            }
-//        }
-//    }
+    public String[] getMan() {
+        return man;
+    }
+
+    public void setMan() throws IOException {
+        Scanner kb = new Scanner(System.in);
+        man = new String[2];
+
+        while (true) {
+            System.out.print("회원번호 입력 : ");
+            man[0] = kb.next();
+            System.out.print("이름 입력 : ");
+            man[1] = kb.next();
+
+            if (man[0].length() == 4) {
+                break;
+            } else {
+                System.err.println("회원번호는 4자리 입니다.\n다시 입력해주세요.");
+                System.in.read();
+            }
+        }
+    }
+
+    public char getGrade() {
+        return grade;
+    }
+
+    public void setGrade() throws IOException {
+        Scanner kb = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("회원등급 입력 : ");
+            grade = kb.next().charAt(0);
+
+            if (grade >= 'A' && grade <= 'D' || grade >= 'a' && grade <= 'd') {
+                break;
+            } else {
+                System.err.println("회원등급은 대소문자 구분없이 A ~ D 사이 입니다.\n다시 입력해주세요.");
+                System.in.read();
+            }
+        }
+    }
+
+    public int[] getData() {
+        return data;
+    }
+
+    public void setData() throws IOException {
+        Scanner kb = new Scanner(System.in);
+        data = new int[2];
+
+        while (true) {
+            System.out.print("운동분류코드 입력 : ");
+            data[0] = kb.nextInt();
+
+            System.out.print("사용시간 입력 : ");
+            data[1] = kb.nextInt();
+
+            if (data[0] >= 1 && data[0] <= 6) {
+                break;
+            } else {
+                System.err.println("(1)스쿼시, (2)테니스, (3)골프, (4)탁구, (5)에어로빅, (6)헬스\n다시 입력해주세요.");
+                System.in.read();
+            }
+
+            if (data[1] >= 1 && data[1] <= 999) {
+                break;
+            } else {
+                System.err.println("0 ~ 999시간까지만 입력 가능합니다.\n다시 입력해주세요.");
+                System.in.read();
+            }
+        }
+    }
 
     protected String sport_code() {     // 운동 코드 -> 종목 변경
         String sport = "";
