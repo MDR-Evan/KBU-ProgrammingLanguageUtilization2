@@ -1,28 +1,69 @@
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String[][] person = new String[][]{                                                                             // 사용자번호(bunho) | 이름(name) | 세대수(house) | 전기사용량(used)
-                {"1", "김광호", "1", "121"}, {"2", "김선민", "3", "212"},
-                {"3", "김익주", "2", "353"}, {"4", "김진용", "4", "412"},
-                {"5", "김진형", "1", "500"}, {"6", "이순주", "2", "60"},
-                {"7", "오정민", "5", "340"}, {"8", "이규빈", "2", "98"},
-                {"9", "김환용", "1", "20"}, {"0", "김가희", "3", "112"}
-        };
-        int[][] data = new int[person.length][5];                                                                       // 기본요금 | 사용요금 | 부가가치세 | 전력기금 | 사용금액
+        String filename = ".\\data\\custom.txt";
+        String output = ".\\data\\Rent Car.txt";
+        ArrayList<Customer> customers;
+        Scanner kb = new Scanner(System.in);
 
-        Input input = new Input();
-        input.dataRead(person, data);                                                                                   // 사용자 정보 입력(수동)
+        FileHandler fileHandler = new FileHandler(kb);
+        customers = fileHandler.readData(filename);
+        fileHandler.inputData(customers);
 
-        Proccesing proccesing = new Proccesing();
-        proccesing.pay_stepProcess(person, data);                                                                       // 기본요금 계산
-        proccesing.useProcess(person, data);                                                                            // 사용요금 계산
-        proccesing.plusProcess(data);                                                                                   // 부가가치세 계산
-        proccesing.electronicProcess(data);                                                                             // 전력기금 계산
-        proccesing.payProcess(data);                                                                                    // 사용금액 계산
+        sort(customers);
+        display(customers);
+    }
 
-        Output output = new Output();
-        output.sort(person, data);                                                                                      // 정렬
-        output.display(person, data);
+    private static void sort(ArrayList<Customer> customers) {
+        for (int i = 0; i < customers.size(); i++) {
+            for (int j = i + 1; j < customers.size(); j++) {
+                if (customers.get(i).getCustom_num().compareTo(customers.get(j).getCustom_num()) > 0) {
+                    Customer temp = customers.get(i);
+                    customers.set(i, customers.get(j));
+                    customers.set(j, temp);
+                }
+            }
+        }
+    }
+
+    private static void display(List<Customer> customers) {
+        String filePath = ".\\data\\Rent Car.txt";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            bw.write("\t\t\t\t\t\t\t\t Rent Car");
+            bw.newLine();
+            bw.write("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            bw.newLine();
+            bw.write(" 고객번호\t 이름\t코드\t\t 차량종류명\t\t사용시간\t\t사용거리\t\t기본요금\t\t  추가요금\t\t  할인금액\t\t  납부요금\t\t  비고");
+            bw.newLine();
+            bw.write("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            bw.newLine();
+
+            for (Customer customer : customers) {
+                bw.write(customer.toString());
+                bw.newLine();
+            }
+
+            bw.write("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+        System.out.println("\t\t\t\t\t\t\t\t Rent Car");
+        line();
+        System.out.println(" 고객번호\t 이름\t코드\t\t 차량종류명\t\t사용시간\t\t사용거리\t\t기본요금\t\t  추가요금\t\t  할인금액\t\t  납부요금\t\t  비고");
+        line();
+        for (Customer customer : customers) {
+            System.out.println(customer.toString());
+        }
+        line();
+    }
+    private static void line() {
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     }
 }
